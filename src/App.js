@@ -13,6 +13,7 @@ const App = () => {
   // sync up with, if any.
 
   const [data, setData] = useState([]);
+  const [choosenName, setChoosenName] = useState("");
 
   useEffect(() => {
     axios
@@ -26,16 +27,18 @@ const App = () => {
       });
   }, []);
 
-  const Chars = styled.div`
-    display: flex;
-    background-color: blue;
-    width: auto;
-  `;
+  function handleClickName(name) {
+    setChoosenName(name);
+  }
 
   return (
     <div className="App">
       <div>
-        <Karakter data={data} />
+        <Karakter
+          data={data}
+          handleClickName={handleClickName}
+          choosenName={choosenName}
+        />
       </div>
     </div>
   );
